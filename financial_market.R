@@ -1,6 +1,7 @@
 library(rmgarch)
 library(copula)
 
+# 读取数据
 fin<-read.table("financial.txt",header=T)
 head(fin)
 Time=as.Date(fin$date,"%Y-%m-%d")
