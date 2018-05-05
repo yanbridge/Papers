@@ -24,7 +24,7 @@ plot(time,rb50,type="l",xlab="",ylab="",ylim=c(-10,10),las=1,tcl=0.3,
 grid()
 
 plot(time,ra50,type="l",xlab="",ylab="",las=1,tcl=0.3,
-     col=4,main="新华富时A50股指期货收益率 ")  
+     col=4,main="富时中国A50股指期货收益率 ")  
 grid()
 
 plot(time,rhs300,type="l",xlab="",ylab="",ylim=c(-10,10),las=1,tcl=0.3,
@@ -163,7 +163,7 @@ plot(time1,ba.cs1,type="l",ylim=c(0,1),col=4,
      lwd=1,las=1,xlab="",ylab="",tcl=-0.3)
 lines(time1,ba.cs2,type="l",col=2,lwd=3)
 grid()
-text(time1[950],0.62,"新华富时A50股指期货",cex=0.9)
+text(time1[950],0.62,"富时中国A50股指期货",cex=0.9)
 text(time1[940],0.37,"标普中国50指数",cex=0.9)
 
 ## hs300 v if300
@@ -184,7 +184,7 @@ ba.is2<-(ba.cs2*sig.a50*sqrt(1-rho.ba^2))^2/((ba.cs1*sig.sp50+ba.cs2*rho.ba*sig.
 
 plot(time1,ba.is1,type="l",ylim=c(0,1),col=4,las=1,tcl=-0.3)
 lines(time1,ba.is2,type="l",col=2,lwd=3)
-text(time1[850],0.75,"新华富时A50股指期货",cex=0.9)
+text(time1[850],0.75,"富时中国A50股指期货",cex=0.9)
 text(time1[800],0.22,"标普中国50指数",cex=0.9)
 grid()
 
@@ -254,7 +254,7 @@ ba.ils21<-ba.il21/(ba.il11+ba.il21)
 plot(time1,ba.ils11,type="l",col=4,las=1,tcl=-0.3)
 lines(time1,ba.ils21,type="l",col=2,lwd=3)
 grid()
-text(time1[850],0.75,"新华富时A50股指期货",cex=0.8)
+text(time1[850],0.75,"富时中国A50股指期货",cex=0.8)
 text(time1[850],0.25,"标普中国50指数",cex=0.8)
 
 
@@ -284,7 +284,7 @@ ba.ils32<-(ba.cs2+ba.is2)/2-0.02
 plot(time1,ba.ils31,type="l",ylim=c(0,1),col=4,las=1,tcl=-0.3)
 lines(time1,ba.ils32,type="l",col=2,lwd=4)
 grid()
-text(time1[850],0.71,"新华富时A50股指期货",cex=0.8)
+text(time1[850],0.71,"富时中国A50股指期货",cex=0.8)
 text(time1[850],0.28,"标普中国50指数",cex=0.8)
 
 plot(time1,hi.ils1,type="l",col=2,lwd=4,las=1,tcl=-0.3)
@@ -502,11 +502,13 @@ vol.ih <- read.csv("~/YanFiles/MyPapers/Price_Discovery/Data_P/data_ih.csv")
 
 time2 <- Time[-(1:500)]
 
+#### GARCH spillover
+
 par(family='STSong')
 par(mfrow=c(1,3),mar=c(2.5,2.5,1.5,1))
 plot(time2,vol.ab[,6],type='l',ylim=c(-0.3,0.9),las=1,tcl=-0.3,xlab="",ylab="",col=4,main="(a)",cex.axis=1.2)
 lines(time2,vol.ab[,7],col=2,lwd=3)
-legend("topleft",lty=c(1,1),lwd=c(1,3),c("新华富时A50股指期货 → 标普中国50指数","标普中国50指数 → 新华富时A50股指期货"),bty="n",cex=1.1,col=c(4,2))
+legend("topleft",lty=c(1,1),lwd=c(1,3),c("富时中国A50股指期货 → 标普中国50指数","标普中国50指数 → 富时中国A50股指期货"),bty="n",cex=1.1,col=c(4,2))
 abline(h=0,lty=2)
 
 par(family='STSong')
@@ -520,15 +522,15 @@ par(family='STSong')
 par(mar=c(2.5,2.5,1,1))
 plot(time2,vol.ai[,6],type='l',ylim=c(-0.3,0.9),las=1,tcl=-0.3,xlab="",ylab="",col=4,main="(c)",cex.axis=1.2)
 lines(time2,vol.ai[,7],col=2,lwd=3)
-legend("topleft",lty=c(1,1),lwd=c(1,3),c("沪深300股指期货 → 新华富时A50股指期货","新华富时A50股指期货 → 沪深300股指期货"),bty="n",cex=1.1,col=c(4,2))
+legend("topleft",lty=c(1,1),lwd=c(1,3),c("沪深300股指期货 → 富时中国A50股指期货","富时中国A50股指期货 → 沪深300股指期货"),bty="n",cex=1.1,col=c(4,2))
 abline(h=0,lty=2)
 
-####
+#### ARCH spillover
 par(family='STSong')
 par(mfrow=c(1,3),mar=c(2.5,2.5,1.5,1))
 plot(time2,vol.ab[,3],type='l',ylim=c(-1,0.9),las=1,tcl=-0.3,xlab="",ylab="",col=4,main="(a)",cex.axis=1.2)
 lines(time2,vol.ab[,2],col=2,lwd=3)
-legend("topleft",lty=c(1,1),lwd=c(1,3),c("新华富时A50股指期货 → 标普中国50指数","标普中国50指数 → 新华富时A50股指期货"),bty="n",cex=1.1,col=c(4,2))
+legend("topleft",lty=c(1,1),lwd=c(1,3),c("富时中国A50股指期货 → 标普中国50指数","标普中国50指数 → 富时中国A50股指期货"),bty="n",cex=1.1,col=c(4,2))
 abline(h=0,lty=2)
 
 par(family='STSong')
@@ -542,5 +544,5 @@ par(family='STSong')
 par(mar=c(2.5,2.5,1,1))
 plot(time2,vol.ai[,3],type='l',ylim=c(-1,0.9),las=1,tcl=-0.3,xlab="",ylab="",col=4,main="(c)",cex.axis=1.2)
 lines(time2,vol.ai[,2],col=2,lwd=3)
-legend("topleft",lty=c(1,1),lwd=c(1,3),c("沪深300股指期货 → 新华富时A50股指期货","新华富时A50股指期货 → 沪深300股指期货"),bty="n",cex=1.1,col=c(4,2))
+legend("topleft",lty=c(1,1),lwd=c(1,3),c("沪深300股指期货 → 富时中国A50股指期货","富时中国A50股指期货 → 沪深300股指期货"),bty="n",cex=1.1,col=c(4,2))
 abline(h=0,lty=2)
